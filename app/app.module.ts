@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./login/login.component";
 import { CameraComponent } from "./camera/camera.component";
 import * as firebase from "nativescript-plugin-firebase";
+import { environments } from "./environments";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -18,6 +19,7 @@ import * as firebase from "nativescript-plugin-firebase";
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 firebase.init({
+    storageBucket: environments.storageBucket,
     onAuthStateChanged: function(data) { // optional but useful to immediately re-logon the user when he re-visits your app
         console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
         if (data.loggedIn) {

@@ -3,9 +3,12 @@ npm-debug.log
 
 *.js.map
 *.metadata.json
+npm-debug.log
+
 app/**/*.js
 app/App_Resources/iOS/GoogleService-Info.plist
-npm-debug.log
+app/environments.ts
+
 
 hooks/
 lib/

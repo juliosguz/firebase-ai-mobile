@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import * as camera from "nativescript-camera";
 import { Image } from "ui/image";
 
+import * as firebase from "nativescript-plugin-firebase";
+
+import * as imageSourceModule from "image-source";
+import * as fs from "tns-core-modules/file-system";
+
 // Add explicit camera permission 
 camera.requestPermissions();
 
@@ -22,12 +27,33 @@ export class CameraComponent implements OnInit {
     camera
       .takePicture()
       .then((imageAsset) => {
-          console.log("Result is an image asset instance");
           let image = new Image();
           image.src = imageAsset;
-          console.log("Size: " + imageAsset.options.width + "x" + imageAsset.options.height);
-          console.log("keepAspectRatio: " + imageAsset.options.keepAspectRatio);
-          console.log("Photo saved in Photos/Gallery for Android or in Camera Roll for iOS");
+
+          const fileName = Date.now() + "_firedude.png";
+          let documents = fs.knownFolders.documents();
+          let path = fs.path.join(documents.path, fileName);
+          imageSourceModule.fromAsset(imageAsset)
+              .then(imageSource => {
+                console.log(path);
+                if(imageSource.saveToFile(path, "png")) {
+                  firebase.uploadFile({
+                    remoteFullPath: "uploads/" + fileName,
+                    localFile: fs.File.fromPath(path),
+                    onProgress: function(status) {
+                      console.log("Uploaded fraction: " + status.fractionCompleted);
+                      console.log("Percentage complete: " + status.percentageCompleted);
+                    }
+                  }).then(
+                      function (uploadedFile) {
+                        console.log("File uploaded: " + JSON.stringify(uploadedFile));
+                      },
+                      function (error) {
+                        console.log("File upload error: " + error);
+                      }
+                  );
+                }
+              });
       }).catch((err) => {
           console.log("Error -> " + err.message);
       });
