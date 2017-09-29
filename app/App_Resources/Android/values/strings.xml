@@ -1,0 +1,6 @@
+com.juliosguz.firebaseaimobile
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Firebase with AI</string>
+  <string name="title_activity_kimera">Firebase with AI</string>
+</resources>

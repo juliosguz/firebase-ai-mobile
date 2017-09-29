@@ -1,10 +1,13 @@
 {
-  "description": "NativeScript Application",
+  "description": "Firebase with AI",
   "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "readme": "Firebase with AI",
+  "repository": "https://github.com/juliosguz/firebase-ai-mobile",
   "nativescript": {
-    "id": "org.nativescript.firebaseaimobile"
+    "id": "com.juliosguz.firebaseaimobile",
+    "tns-ios": {
+      "version": "3.2.0"
+    }
   },
   "dependencies": {
     "@angular/animations": "~4.2.0",
