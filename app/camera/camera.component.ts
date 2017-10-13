@@ -7,8 +7,7 @@ import * as firebase from "nativescript-plugin-firebase";
 import * as imageSourceModule from "image-source";
 import * as fs from "tns-core-modules/file-system";
 
-// Add explicit camera permission 
-camera.requestPermissions();
+
 
 @Component({
   selector: "ns-items",
@@ -17,7 +16,10 @@ camera.requestPermissions();
   styleUrls: ["./camera.css"]
 })
 export class CameraComponent implements OnInit {
-  constructor() { }
+  constructor() { 
+    // Add explicit camera permission 
+    camera.requestPermissions();
+  }
 
   ngOnInit(): void {
 

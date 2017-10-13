@@ -7,6 +7,7 @@ npm-debug.log
 
 app/**/*.js
 app/App_Resources/iOS/GoogleService-Info.plist
+app/App_Resources/Android/google-services.json
 app/environments.ts
 
 
@@ -17,4 +18,6 @@ platforms/
 tmp/
 typings/
 report/
+
+package-lock.json
 
